@@ -55,13 +55,13 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 void hook() {
     printf("Hooking\n");
-  hhkLowLevelKybd = SetWindowsHookEx(WH_MOUSE_LL, LowLevelKeyboardProc, 0, 0);
+    hhkLowLevelKybd = SetWindowsHookEx(WH_MOUSE_LL, LowLevelKeyboardProc, 0, 0);
 
-  MSG msg;
-  while (!GetMessage(&msg, NULL, NULL, NULL)) {
-      TranslateMessage(&msg);
-      DispatchMessage(&msg);
-  }
+    MSG msg;
+    while (!GetMessage(&msg, NULL, NULL, NULL)) {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
 
    UnhookWindowsHookEx(hhkLowLevelKybd);
 }
@@ -80,6 +80,7 @@ void handleKeyEvent(uv_async_t *handle) {
 
     if (keyCodeString == "up") {
         uv_close((uv_handle_t*)&async, NULL);
+        UnhookWindowsHookEx(hhkLowLevelKybd);
         running = 0;
     }
 }
@@ -96,6 +97,7 @@ void RunCallback(const FunctionCallbackInfo<Value>& args) {
 
     if (running == 1) {
         uv_close((uv_handle_t*)&async, NULL);
+        UnhookWindowsHookEx(hhkLowLevelKybd);
         running = 0;
     }
 
@@ -114,6 +116,7 @@ void RunCallback(const FunctionCallbackInfo<Value>& args) {
 void StopCallback(const FunctionCallbackInfo<Value>& args) {
     if (running == 1) {
         uv_close((uv_handle_t*)&async, NULL);
+        UnhookWindowsHookEx(hhkLowLevelKybd);
         running = 0;
     }
 }
