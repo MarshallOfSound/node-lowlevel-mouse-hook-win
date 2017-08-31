@@ -17,5 +17,6 @@
   },
   "devDependencies": {
     "prebuild": "^6.2.1"
-  }
+  },
+  "repository": "https://www.github.com/MarshallOfSound/node-lowlevel-mouse-hook-win"
 }

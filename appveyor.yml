@@ -1,7 +1,7 @@
 os: unstable
 environment:
   prebuild_upload:
-    secure: sWlTvBVTcUbEHVNs6GZDTp63rQmNvXK79IFRPt5KV4c
+    secure: uH5Sj4XvqKHHt6TlGrb2FXWHSqhd+G4aFaRIdT5Shf+P12hRXPS9SnAo6t8B1BDo
 
   nodejs_version: "6"
 
@@ -25,8 +25,7 @@ build_script:
 test_script:
 - ps: >
     if ($env:publish_binary -eq "true") {
-      npm i -g prebuild
-      prebuild --upload
+      node_modules\\.bin\\prebuild --upload
     }
     true;
 deploy: OFF
