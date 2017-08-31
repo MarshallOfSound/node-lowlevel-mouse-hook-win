@@ -5,6 +5,10 @@ environment:
 
   nodejs_version: "6"
 
+platform:
+  - x86
+  - x64
+
 install:
 - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild $env:nodejs_version);
 # Check if we're building the latest tag, if so
