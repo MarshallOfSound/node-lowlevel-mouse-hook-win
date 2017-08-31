@@ -1,6 +1,6 @@
 {
   "name": "ll-mouse-hook-win",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Node.js Addons Example #3",
   "main": "ll_mouse_hooks.js",
   "gypfile": true,
